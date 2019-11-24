@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Andruino_Bluetooth</string>
+    <string name="app_name">Invernitor</string>
+    <string name="helloWorld">hello world</string>
 </resources>

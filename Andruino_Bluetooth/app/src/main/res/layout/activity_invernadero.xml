@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/gradient_invernadero">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/inv_tb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
+            app:titleTextColor="@android:color/white"/>
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_margin="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Temperatura"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/header_size" />
+
+                <TextView
+                    android:id="@+id/txv_temp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 °C"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/inv_txt_size"
+                    android:textStyle="bold" />
+
+                 ?<ProgressBar
+                    android:id="@+id/progress_circular"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_gravity="center"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressDrawable="@drawable/custom_progress"
+                    android:background="@drawable/shape"/>
+                <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:id="@+id/prog1"
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"
+                    app:cpb_background_progressbar_color="#b6bbd8"
+                    app:cpb_background_progressbar_width="5dp"
+                    app:cpb_progress_direction="to_right"
+                    app:cpb_progressbar_color="#3f51b5"
+                    app:cpb_progressbar_width="10dp"
+                    app:cpb_round_border="false"
+                    app:cpb_progress_max="100"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
+                    android:text="Humedad"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/header_size" />
+
+                <TextView
+                    android:id="@+id/txv_humedad"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="0 %"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/inv_txt_size"
+                    android:textStyle="bold" />
+                <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:id="@+id/prog2"
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"
+                    app:cpb_background_progressbar_color="#b6bbd8"
+                    app:cpb_background_progressbar_width="5dp"
+                    app:cpb_progress_direction="to_right"
+                    app:cpb_progressbar_color="#3f51b5"
+                    app:cpb_progressbar_width="10dp"
+                    app:cpb_round_border="false"
+                    app:cpb_progress_max="100"/>
+
+               ++ <ProgressBar
+                    android:id="@+id/progress_circular2"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:indeterminate="false"
+                    android:max="100"
+                    android:progressDrawable="@drawable/custom_progress" /> ++
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/txv_hum_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/txv_temp_msg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        ++ <Button
+            android:id="@+id/btn_activar_sistema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Activar Sistema"
+            android:layout_marginHorizontal="20dp"/>
+
+        <Button
+            android:id="@+id/btn_enc_agua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Encencer Bombda de agua"
+            android:layout_marginHorizontal="20dp"/>
+
+        <Button
+            android:id="@+id/btn_ventilacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Encender Ventilador"
+            android:layout_marginHorizontal="20dp"/>
+
+        <Button
+            android:id="@+id/btn_open_door"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Abrir Puerta"
+            android:layout_marginHorizontal="20dp"/> ++
+
+        <FrameLayout
+            android:id="@+id/fragContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </FrameLayout>-->
+        <FrameLayout
+            android:id="@+id/fragContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+</ScrollView>

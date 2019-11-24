@@ -1,8 +1,10 @@
-package com.sorezel.andruino_bluetooth;
+package com.sorezel.andruino_bluetooth.v1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.sorezel.andruino_bluetooth.R;
 
 public class MainActivity extends AppCompatActivity {
 

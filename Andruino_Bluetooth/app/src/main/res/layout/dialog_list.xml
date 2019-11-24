@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dispositivos Vinculados" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@android:color/black"/>
+    <ListView
+        android:id="@+id/lstv_paired"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+    </ListView>
+    <!--<TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dispositivos visibles" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3px"
+        android:background="@android:color/black"/>
+    <ListView
+        android:id="@+id/lstv_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/btn_scan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Escanear"
+        android:layout_marginBottom="50dp"/>-->
+</LinearLayout>
