@@ -32,6 +32,7 @@ public class AppFragment extends Fragment {
     private Switch swActivarSistema,swVentilacion,swPuerta,swRegar,swAlgo;
     private CardView cardV;
     private Bluetooth bluetooth;
+    private boolean flag;
     private void init(){
         txvT = view.findViewById(R.id.txv_temp);
         txvH = view.findViewById(R.id.txv_humedad);
@@ -43,17 +44,25 @@ public class AppFragment extends Fragment {
         swRegar = view.findViewById(R.id.sw_regar);
         swAlgo = view.findViewById(R.id.sw_algo);
 
-        bluetooth.send(swActivarSistema.isChecked()? "1":"0");
+        try{
+            bluetooth.send(swActivarSistema.isChecked()? "1":"0");
+        }catch (NullPointerException e){}
+
 
         swActivarSistema.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Toast.makeText(view.getContext(),"Sistema = "+b,Toast.LENGTH_SHORT).show();
+                String val = (b ? "Encendido":"Apagado");
+                Toast.makeText(view.getContext(),"Sistema = "+val,Toast.LENGTH_SHORT).show();
                 /*if( b )
                     bluetooth.send("1");
                 else
                     bluetooth.send("0");*/
-                bluetooth.send(b ?  "1" : "0" );
+                try{
+                    bluetooth.send(b ?  "1" : "0" );
+                    flag = b;
+                }catch (NullPointerException e){}
+
             }
         });
         swVentilacion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -64,7 +73,9 @@ public class AppFragment extends Fragment {
                     bluetooth.send("3");
                 else
                     bluetooth.send("2");*/
-                bluetooth.send(b ?  "3" : "2" );
+                try{
+                    bluetooth.send(b ?  "3" : "2" );
+                }catch (NullPointerException e){}
             }
         });
         swPuerta.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -75,41 +86,45 @@ public class AppFragment extends Fragment {
                     bluetooth.send("5");
                 else
                     bluetooth.send("4");*/
-                bluetooth.send(b ?  "5" : "4" );
+                try{
+                    bluetooth.send(b ?  "5" : "4" );
+                }catch (NullPointerException e){}
             }
         });
         swRegar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                Toast.makeText(view.getContext(),"Sistema = "+b,Toast.LENGTH_SHORT).show();
+                Toast.makeText(view.getContext(),"Regado = "+b,Toast.LENGTH_SHORT).show();
                 /*if( b )
                     bluetooth.send("7");
                 else
                     bluetooth.send("6");*/
-                bluetooth.send(b ?  "7" : "6" );
+                try{
+                    bluetooth.send(b ?  "7" : "6" );
+                }catch (NullPointerException e){}
             }
         });
 
         cpg = view.findViewById(R.id.prog1);
         cpg2 = view.findViewById(R.id.prog2);
         //cpg.setProgressMax(100f);
-        cpg.setProgressBarColorStart(Color.YELLOW);
-        cpg.setProgressBarColorEnd(Color.GREEN);
-        cpg.setProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
+        /*cpg.setProgressBarColorStart(Color.YELLOW);
+        cpg.setProgressBarColorEnd(Color.GREEN);*/
+       // cpg.setProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
 
-        cpg2.setProgressBarColorStart(Color.YELLOW);
-        cpg2.setProgressBarColorEnd(Color.GREEN);
-        cpg2.setProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
+        /*cpg2.setProgressBarColorStart(Color.YELLOW);
+        cpg2.setProgressBarColorEnd(Color.GREEN);*/
+        //cpg2.setProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
         cardV = view.findViewById(R.id.app_card);
 
         muevele();
         LinearLayout lyout = view.findViewById(R.id.layout_frag);
-        //lyout.setBackgroundColor(Color.TRANSPARENT);
+        lyout.setBackgroundColor(Color.TRANSPARENT);
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_app,container,false);
+        view = inflater.inflate(R.layout.fragment_app2,container,false);
         init();
         setHasOptionsMenu(true);
         return view;
@@ -143,9 +158,9 @@ public class AppFragment extends Fragment {
                 cardV.setVisibility(View.VISIBLE);
                 break;
             default:
-                //muevele();
+                muevele();
                 char dis = swActivarSistema.isChecked()? '1':'0';
-                Toast.makeText(getContext(),dis,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),""+dis,Toast.LENGTH_SHORT).show();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -154,7 +169,7 @@ public class AppFragment extends Fragment {
     private void muevele(){
         final Handler handler = new Handler();
         Random rn = new Random();
-        val = rn.nextInt(100);
+        val = rn.nextInt(50);
         val2 = rn.nextInt(100);
         txvT.setText(""+val);
         txvH.setText(""+val2);
@@ -214,12 +229,48 @@ public class AppFragment extends Fragment {
         cpg.setProgress(Float.parseFloat(dataT[0]));
         cpg2.setProgress(Float.parseFloat(dataH[0]));
 
-        for (int i = 1; i < dataH.length;i++)
-            auxHumedad += dataH[i];
-        for (int i = 1; i < dataT.length;i++)
-            auxTemperatura += dataT[i];
+        for (int i = 1; i < dataH.length;i++){
+            if( dataH[i].contains("B"))
+                if(dataH[i].contains("+"))
+                    swRegar.setChecked(true);
+                else
+                    swRegar.setChecked(false);
+            else
+                auxHumedad += dataH[i];
+        }
+        for (int i = 1; i < dataT.length;i++){
+            if( dataT[i].contains("V") )
+                if(dataT[i].contains("+"))
+                    swVentilacion.setChecked(true);
+                else
+                    swVentilacion.setChecked(false);
+            else if( dataT[i].contains("P") )
+                if(dataT[i].contains("+"))
+                    swPuerta.setChecked(true);
+                else
+                    swPuerta.setChecked(false);
+            else
+                auxTemperatura += dataT[i];
+        }
 
         txvHMsg.setText(auxHumedad);
         txvTMsg.setText(auxTemperatura);
+    }
+
+    public void displayOff(String str) {
+        txvTMsg.setText(str);
+        cpg.setProgress(0);
+        cpg2.setProgress(0);
+        txvT.setText("0 °C");
+        txvH.setText("0 %");
+        txvHMsg.setText("");
+        swVentilacion.setChecked(false);
+        swVentilacion.setClickable(flag);
+        swRegar.setChecked(false);
+        swRegar.setClickable(flag);
+        swPuerta.setChecked(false);
+        swPuerta.setClickable(flag);
+        swAlgo.setChecked(false);
+        swAlgo.setClickable(flag);
     }
 }

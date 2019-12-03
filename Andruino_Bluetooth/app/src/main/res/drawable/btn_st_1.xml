@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <item android:state_pressed="true">
+      <layer-list>
+          <item>
+              <shape android:shape="rectangle">
+                  <solid android:color="#818181"/>
+                  <corners
+                      android:radius="8dp" />
+              </shape>
+          </item>
+          <item android:bottom="4px"
+              android:right="4px">
+              <shape android:shape="rectangle">
+                  <corners
+                      android:radius="8dp"
+                      />
+                  <solid
+                      android:color="#15A4BA"
+                      />
+                  <padding
+                      android:left="0dp"
+                      android:top="0dp"
+                      android:right="0dp"
+                      android:bottom="0dp"
+                      />
+                  <!--<size
+                      android:width="270dp"
+                      android:height="60dp"
+                      />-->
+              </shape>
+          </item>
+      </layer-list>
+  </item>
+    <item>
+        <layer-list>
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="#000000"/>
+                    <corners
+                        android:radius="8dp" />
+                </shape>
+            </item>
+            <item android:bottom="4px"
+                android:right="4px">
+                <shape android:shape="rectangle">
+                    <corners
+                        android:radius="8dp"
+                        />
+                    <solid
+                        android:color="#107E8F"
+                        />
+                    <padding
+                        android:left="0dp"
+                        android:top="0dp"
+                        android:right="0dp"
+                        android:bottom="0dp"
+                        />
+                    <!--<size
+                        android:width="270dp"
+                        android:height="60dp"
+                        />-->
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

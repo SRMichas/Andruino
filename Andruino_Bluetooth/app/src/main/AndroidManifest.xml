@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_invernadero"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -32,6 +32,9 @@
 
         </activity>
         <activity android:name=".omar.ChatActivity"/>
+        <activity android:name=".invernadero.testActivity">
+
+        </activity>
     </application>
 
 </manifest>

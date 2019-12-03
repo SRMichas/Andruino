@@ -5,6 +5,20 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorPrin">#02989d</color>
     <color name="deg1">#5847F5</color>
+    <color name="aaaa">#E90CC4</color>
+    <color name="deg1_1">#0072FF</color>
+    <color name="deg1_2">#008AFF</color>
+    <color name="deg1_3">#0098EE</color>
+    <color name="deg1_4">#00A1B9</color>
+    <color name="deg1_5">#00A77C</color>
+
     <color name="deg2">#80BFF5</color>
+    <color name="ababa">#9E5596</color>
     <color name="cardBack">#95C7F8</color>
+
+    <color name="btn">#D3D3D3</color>
+    <color name="btn_shadow">#AFABAB</color>
+
+    <color name="test1">#C01EE0</color>
+    <color name="test2">#34ECC5</color>
 </resources>

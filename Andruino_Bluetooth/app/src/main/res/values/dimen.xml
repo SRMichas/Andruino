@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="img_size">250dp</dimen>
+    <dimen name="img_size">300dp</dimen>
     <dimen name="stsreen_margin_btn">50dp</dimen>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>

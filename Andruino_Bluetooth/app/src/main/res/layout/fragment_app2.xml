@@ -13,36 +13,61 @@
         <!--Zona de las mediciones-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_margin="15dp">
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Temperatura"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/header_size"
+                android:layout_marginBottom="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:text="Temperatura"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/header_size" />
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight=".08"
+                    app:srcCompat="@drawable/ic_temperature_vec" />
+
+                <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:id="@+id/prog1"
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"
+                    app:cpb_background_progressbar_color="#b6bbd8"
+                    app:cpb_background_progressbar_width="7dp"
+                    app:cpb_progress_direction="to_right"
+                    app:cpb_progress_max="50"
+                    app:cpb_progressbar_color_end="@color/test2"
+                    app:cpb_progressbar_color_start="@color/test1"
+                    app:cpb_progressbar_width="10dp"
+                    app:cpb_round_border="true"
+                    android:layout_weight="1.1"
+                    app:cpb_progressbar_color_direction="right_to_left"/>
 
                 <TextView
                     android:id="@+id/txv_temp"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1.1"
                     android:text="0 °C"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/inv_txt_size"
                     android:textStyle="bold" />
+            </LinearLayout>
 
-                <!--<ProgressBar
+            <!--<ProgressBar
                     android:id="@+id/progress_circular"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="90dp"
@@ -52,58 +77,64 @@
                     android:max="100"
                     android:progressDrawable="@drawable/custom_progress"
                     android:background="@drawable/shape"/>-->
-                <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                    android:id="@+id/prog1"
-                    android:layout_width="@dimen/progress_size"
-                    android:layout_height="@dimen/progress_size"
-                    app:cpb_background_progressbar_color="#b6bbd8"
-                    app:cpb_background_progressbar_width="7dp"
-                    app:cpb_progress_direction="to_right"
-                    app:cpb_progressbar_width="10dp"
-                    app:cpb_round_border="false"
-                    app:cpb_progress_max="50"
-                    app:cpb_progressbar_color_end="@color/test2"
-                    app:cpb_progressbar_color_start="@color/test1"/>
-            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="20dp"
+                android:text="Humedad"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/header_size" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:gravity="center">
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="20dp"
-                    android:text="Humedad"
-                    android:textColor="@android:color/white"
-                    android:textSize="@dimen/header_size" />
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_weight="0.08"
+                    app:srcCompat="@drawable/ic_humidity_vec" />
+
+                <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:id="@+id/prog2"
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"
+                    android:layout_weight="1.1"
+                    app:cpb_background_progressbar_color="#b6bbd8"
+                    app:cpb_background_progressbar_width="5dp"
+                    app:cpb_progress_direction="to_right"
+                    app:cpb_progress_max="100"
+                    app:cpb_progressbar_color_end="@color/test2"
+                    app:cpb_progressbar_color_start="@color/test1"
+                    app:cpb_progressbar_width="10dp"
+                    app:cpb_round_border="true"
+                    app:cpb_progressbar_color_direction="right_to_left"/>
 
                 <TextView
                     android:id="@+id/txv_humedad"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1.1"
                     android:text="0 %"
                     android:textAlignment="center"
                     android:textColor="@android:color/white"
                     android:textSize="@dimen/inv_txt_size"
                     android:textStyle="bold" />
-                <com.mikhaellopez.circularprogressbar.CircularProgressBar
-                    android:id="@+id/prog2"
-                    android:layout_width="@dimen/progress_size"
-                    android:layout_height="@dimen/progress_size"
-                    app:cpb_background_progressbar_color="#b6bbd8"
-                    app:cpb_background_progressbar_width="7dp"
-                    app:cpb_progress_direction="to_right"
-                    app:cpb_progressbar_width="10dp"
-                    app:cpb_round_border="false"
-                    app:cpb_progress_max="100"
-                    app:cpb_progressbar_color_end="@color/test2"
-                    app:cpb_progressbar_color_start="@color/test1"/>
+            </LinearLayout>
 
-                <!-- <ProgressBar
+            <!-- <ProgressBar
                      android:id="@+id/progress_circular2"
                      style="?android:attr/progressBarStyleHorizontal"
                      android:layout_width="90dp"
@@ -112,15 +143,14 @@
                      android:max="100"
                      android:progressDrawable="@drawable/custom_progress" />-->
 
-            </LinearLayout>
-
-
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginHorizontal="15dp">
+            android:layout_marginHorizontal="15dp"
+            android:layout_marginTop="25dp">
             <!--Zona de administracion-->
             <Switch
                 android:id="@+id/sw_sistema"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +24,12 @@ public class InvernaderoActivity extends AppCompatActivity implements DeviceCall
     FragmentManager fm;
     int container = R.id.fragContainer;
     boolean prueba = true;
+    Toolbar tb;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_invernadero);
-        Toolbar tb = findViewById(R.id.inv_tb);
+        tb = findViewById(R.id.inv_tb);
         setSupportActionBar(tb);
         device = getIntent().getParcelableExtra("disp");
         fm = getSupportFragmentManager();
@@ -54,9 +56,11 @@ public class InvernaderoActivity extends AppCompatActivity implements DeviceCall
     @Override
     public void onDeviceConnected(BluetoothDevice device) {
         Toast.makeText(this,"Dispsitivo disponible!!!",Toast.LENGTH_SHORT).show();
+        fm.beginTransaction().remove(fragment).detach(fragment).commit();
         fragment = new AppFragment();
         ((AppFragment) fragment).setBluetooth(bluetooth);
         fm.beginTransaction().add(container,fragment).commit();
+        tb.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -65,11 +69,17 @@ public class InvernaderoActivity extends AppCompatActivity implements DeviceCall
     @Override
     public void onMessage(byte[] message) {
         String str = new String(message),auxHumedad,auxTemperatura;
-        int mitad = str.indexOf('!');
-        auxHumedad = str.substring(0,mitad);
-        auxTemperatura = str.substring(mitad+1,str.length());
         AppFragment appFragment = ((AppFragment)fragment);
-        appFragment.displayData(auxHumedad,auxTemperatura);
+        if( !str.equals("Sistema Desactivado")){
+            int mitad = str.indexOf('!');
+            auxHumedad = str.substring(0,mitad);
+            auxTemperatura = str.substring(mitad+1,str.length());
+
+            appFragment.displayData(auxHumedad,auxTemperatura);
+        }else{
+            appFragment.displayOff(str);
+        }
+
     }
 
     @Override
@@ -85,11 +95,13 @@ public class InvernaderoActivity extends AppCompatActivity implements DeviceCall
                 bluetooth.connectToDevice(device);
             }
         }, 2000);
-        /*if ( prueba ){
+        if ( prueba ){
+            fm.beginTransaction().remove(fragment).detach(fragment).commit();
             fragment = new AppFragment();
             fm.beginTransaction().add(container,fragment).commit();
+            tb.setVisibility(View.VISIBLE);
             prueba = false;
-        }*/
+        }
 
     }
 

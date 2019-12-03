@@ -5,8 +5,10 @@
     <dimen name="card_round">8dp</dimen>
     <dimen name="card_horizontal_margin">25dp</dimen>
     <dimen name="frag_mon_tit">20sp</dimen>
-    <dimen name="progress_size">80dp</dimen>
-    <dimen name="progress_size_dialog">120dp</dimen>
+    <dimen name="progress_size">120dp</dimen>
+    <dimen name="progress_size_dialog">100dp</dimen>
     <dimen name="text_size_dialog">30sp</dimen>
     <dimen name="app_txt_sz">20sp</dimen>
+    <dimen name="adater_txt_sz">18sp</dimen>
+    <dimen name="test_margin">35dp</dimen>
 </resources>
