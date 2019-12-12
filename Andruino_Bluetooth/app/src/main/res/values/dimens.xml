@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="inv_txt_size">40sp</dimen>
-    <dimen name="header_size">20dp</dimen>
+    <dimen name="header_size">20sp</dimen>
     <dimen name="card_round">8dp</dimen>
-    <dimen name="card_horizontal_margin">25dp</dimen>
+    <dimen name="card_horizontal_margin">2dp</dimen>
     <dimen name="frag_mon_tit">20sp</dimen>
     <dimen name="progress_size">120dp</dimen>
     <dimen name="progress_size_dialog">100dp</dimen>

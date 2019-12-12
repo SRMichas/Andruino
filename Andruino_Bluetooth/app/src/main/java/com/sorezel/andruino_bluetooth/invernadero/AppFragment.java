@@ -48,7 +48,7 @@ public class AppFragment extends Fragment {
             bluetooth.send(swActivarSistema.isChecked()? "1":"0");
         }catch (NullPointerException e){}
 
-
+        //oyente que enviar el valor dependiendo del estado en que se encuentre
         swActivarSistema.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -59,12 +59,14 @@ public class AppFragment extends Fragment {
                 else
                     bluetooth.send("0");*/
                 try{
+                    //envia 1 cuando es true, 0 cuando es false
                     bluetooth.send(b ?  "1" : "0" );
                     flag = b;
                 }catch (NullPointerException e){}
 
             }
         });
+        //oyente que enviar el valor dependiendo del estado en que se encuentre
         swVentilacion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -74,10 +76,12 @@ public class AppFragment extends Fragment {
                 else
                     bluetooth.send("2");*/
                 try{
+                    //envia 1 cuando es true, 0 cuando es false
                     bluetooth.send(b ?  "3" : "2" );
                 }catch (NullPointerException e){}
             }
         });
+        //oyente que enviar el valor dependiendo del estado en que se encuentre
         swPuerta.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -87,10 +91,12 @@ public class AppFragment extends Fragment {
                 else
                     bluetooth.send("4");*/
                 try{
+                    //envia 1 cuando es true, 0 cuando es false
                     bluetooth.send(b ?  "5" : "4" );
                 }catch (NullPointerException e){}
             }
         });
+        //oyente que enviar el valor dependiendo del estado en que se encuentre
         swRegar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
@@ -100,6 +106,7 @@ public class AppFragment extends Fragment {
                 else
                     bluetooth.send("6");*/
                 try{
+                    //envia 1 cuando es true, 0 cuando es false
                     bluetooth.send(b ?  "7" : "6" );
                 }catch (NullPointerException e){}
             }
@@ -107,24 +114,16 @@ public class AppFragment extends Fragment {
 
         cpg = view.findViewById(R.id.prog1);
         cpg2 = view.findViewById(R.id.prog2);
-        //cpg.setProgressMax(100f);
-        /*cpg.setProgressBarColorStart(Color.YELLOW);
-        cpg.setProgressBarColorEnd(Color.GREEN);*/
-       // cpg.setProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
-
-        /*cpg2.setProgressBarColorStart(Color.YELLOW);
-        cpg2.setProgressBarColorEnd(Color.GREEN);*/
-        //cpg2.setProgressBarColorDirection(CircularProgressBar.GradientDirection.TOP_TO_BOTTOM);
         cardV = view.findViewById(R.id.app_card);
 
-        muevele();
+        //muevele();
         LinearLayout lyout = view.findViewById(R.id.layout_frag);
         lyout.setBackgroundColor(Color.TRANSPARENT);
     }
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_app2,container,false);
+        view = inflater.inflate(R.layout.fragment_app,container,false);
         init();
         setHasOptionsMenu(true);
         return view;
@@ -149,14 +148,12 @@ public class AppFragment extends Fragment {
         int id = item.getItemId();
         switch (id){
             case R.id.id_manual:
-                //fm.beginTransaction().add(R.id.fragContainer,mf).commit();
                 modoManual(true);
                 Toast.makeText(view.getContext(),"Modo manual activado",Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.id_log:
-                //fm.beginTransaction().remove(mf).commit();
+            /*case R.id.id_log:
                 cardV.setVisibility(View.VISIBLE);
-                break;
+                break;*/
             default:
                 muevele();
                 char dis = swActivarSistema.isChecked()? '1':'0';
@@ -182,7 +179,6 @@ public class AppFragment extends Fragment {
                         @Override
                         public void run() {
                             cpg.setProgress((float)vueltas);
-                            //txtProgress.setText(pStatus + " %");
                         }
                     });
                     try {
@@ -204,7 +200,6 @@ public class AppFragment extends Fragment {
                         @Override
                         public void run() {
                             cpg2.setProgress((float)vueltas2);
-                            //txtProgress.setText(pStatus + " %");
                         }
                     });
                     try {
@@ -220,37 +215,39 @@ public class AppFragment extends Fragment {
     }
 
     public void displayData(String auxHumedad, String auxTemperatura) {
+        //dividimos las cadenas por medio del caracter "_", y los guardamos en arreglos de cadenas
         String[] dataH = auxHumedad.split("_"),dataT = auxTemperatura.split("_");
+        //limpiamos las cadenas
         auxHumedad = "";
         auxTemperatura = "";
-
+        //insertarmos la primer cadea del arreglo en la vista de temperatura y humedad
         txvH.setText(dataH[0]+" %");
         txvT.setText(dataT[0]+" °C");
         cpg.setProgress(Float.parseFloat(dataT[0]));
         cpg2.setProgress(Float.parseFloat(dataH[0]));
 
-        for (int i = 1; i < dataH.length;i++){
-            if( dataH[i].contains("B"))
-                if(dataH[i].contains("+"))
-                    swRegar.setChecked(true);
-                else
-                    swRegar.setChecked(false);
+        for (int i = 1; i < dataH.length;i++){ //recorremos el arreglo empezando del segundo elemento
+            if( dataH[i].contains("B")) //preguntamos si es el caracter de control del switch
+                if(dataH[i].contains("+"))  //pregunta si el caracter esta "encendido"
+                    swRegar.setChecked(true);  //encendemos el switch
+                else                          //pregutna si el caracter esta "apagado"
+                    swRegar.setChecked(false);  //apagamos el switch
             else
-                auxHumedad += dataH[i];
+                auxHumedad += dataH[i];     //enviamos las demas cadenas a la zona de monitoreo
         }
         for (int i = 1; i < dataT.length;i++){
-            if( dataT[i].contains("V") )
-                if(dataT[i].contains("+"))
-                    swVentilacion.setChecked(true);
+            if( dataT[i].contains("V") )    //preguntamos si es el caracter de control del switch
+                if(dataT[i].contains("+"))  //pregunta si el caracter esta "encendido"
+                    swVentilacion.setChecked(true); //encendemos el switch
                 else
-                    swVentilacion.setChecked(false);
-            else if( dataT[i].contains("P") )
-                if(dataT[i].contains("+"))
-                    swPuerta.setChecked(true);
+                    swVentilacion.setChecked(false); //apagamos el switch
+            else if( dataT[i].contains("P") )   //preguntamos si es el caracter de control del switch
+                if(dataT[i].contains("+"))  //pregunta si el caracter esta "encendido"
+                    swPuerta.setChecked(true); //encendemos el switch
                 else
-                    swPuerta.setChecked(false);
+                    swPuerta.setChecked(false); //apagamos el switch
             else
-                auxTemperatura += dataT[i];
+                auxTemperatura += dataT[i];     //enviamos las demas cadenas a la zona de monitoreo
         }
 
         txvHMsg.setText(auxHumedad);
@@ -258,19 +255,19 @@ public class AppFragment extends Fragment {
     }
 
     public void displayOff(String str) {
-        txvTMsg.setText(str);
-        cpg.setProgress(0);
-        cpg2.setProgress(0);
-        txvT.setText("0 °C");
-        txvH.setText("0 %");
-        txvHMsg.setText("");
-        swVentilacion.setChecked(false);
-        swVentilacion.setClickable(flag);
-        swRegar.setChecked(false);
-        swRegar.setClickable(flag);
-        swPuerta.setChecked(false);
-        swPuerta.setClickable(flag);
-        swAlgo.setChecked(false);
-        swAlgo.setClickable(flag);
+        txvTMsg.setText(str);   //ponemos el mensaje obtenido
+        cpg.setProgress(0);     //limpiamos la barra de progreso
+        cpg2.setProgress(0);    //limpiamos la barra de progreso
+        txvT.setText("0 °C");   //limpiamos la vista especificada
+        txvH.setText("0 %");    //limpiamos la vista especificada
+        txvHMsg.setText("");    //limpiamos la vista especificada
+        swVentilacion.setChecked(false);        //apagamos el switch
+        swVentilacion.setClickable(flag);   //evitamos que se le pueda dar click al switch
+        swRegar.setChecked(false);      //apagamos el switch
+        swRegar.setClickable(flag); //evitamos que se le pueda dar click al switch
+        swPuerta.setChecked(false);     //apagamos el switch
+        swPuerta.setClickable(flag);    //evitamos que se le pueda dar click al switch
+        swAlgo.setChecked(false);       //apagamos el switch
+        swAlgo.setClickable(flag);  //evitamos que se le pueda dar click al switch
     }
 }

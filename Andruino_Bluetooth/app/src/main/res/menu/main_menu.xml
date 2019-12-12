@@ -3,16 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/id_ejemplo"
-        android:title="Prueba"/>
-    <item
         android:id="@+id/id_manual"
         android:title="Manual"/>
-    <item
-        android:id="@+id/id_log"
-        android:title="LOG"/>
-    <item
-        android:id="@+id/id_sw_mod"
-        app:actionLayout="@layout/switch_item"
-        android:title="Switch"/>
 </menu>

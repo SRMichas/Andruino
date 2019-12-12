@@ -26,15 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".invernadero.MainActivity"/>
         <activity android:name=".invernadero.InvernaderoActivity"/>
         <activity android:name=".omar.ScanActivity">
 
         </activity>
         <activity android:name=".omar.ChatActivity"/>
-        <activity android:name=".invernadero.testActivity">
-
-        </activity>
     </application>
 
 </manifest>

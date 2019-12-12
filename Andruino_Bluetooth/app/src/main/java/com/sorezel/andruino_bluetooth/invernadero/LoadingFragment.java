@@ -16,6 +16,7 @@ public class LoadingFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //instancia la vista
         View view = inflater.inflate(R.layout.dialog_loading,container,false);
         return view;
     }

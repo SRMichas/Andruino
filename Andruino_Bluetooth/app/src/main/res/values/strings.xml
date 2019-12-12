@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Invernitor</string>
     <string name="helloWorld">hello world</string>
+    <string name="activar_sistema">Activar Sistema</string>
+    <string name="ventilacion">Ventilacion</string>
+    <string name="regar">Regar</string>
+    <string name="puerta">Puerta</string>
+    <string name="monitor">MONITOR</string>
+    <string name="temperatura">Temperatura</string>
+    <string name="humidity_percent">0 %</string>
+    <string name="humedad">Humedad</string>
+    <string name="temp">0 °C</string>
 </resources>
